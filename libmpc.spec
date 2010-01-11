@@ -1,12 +1,12 @@
 %define realname	mpc
 %define libmajor	2
-%define libname		%mklibname %{basename} %{libmajor}
-%define libname_devel	%mklibname %{basename} -d
+%define libname		%mklibname %{realname} %{libmajor}
+%define libname_devel	%mklibname %{realname} -d
 
 Summary:	Arithmetic of complex numbers with arbitrarily high precision and correct rounding
 Name:		libmpc
 Version:	0.8.1
-Release:	%mkrel 1
+Release:	%mkrel 2
 License:	LGPLv2+
 Group:		System/Libraries
 URL:		http://www.http://www.multiprecision.org/%{realname}
