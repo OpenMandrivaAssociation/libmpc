@@ -55,6 +55,7 @@ Development headers and libraries for MPC.
 %setup -q -n %{realname}-%{version}
 
 %build
+autoreconf
 %configure			\
 	--enable-shared		\
 	--disable-static
