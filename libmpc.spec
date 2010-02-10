@@ -6,7 +6,7 @@
 Summary:	Arithmetic of complex numbers with arbitrarily high precision and correct rounding
 Name:		libmpc
 Version:	0.8.1
-Release:	%mkrel 2
+Release:	%mkrel 3
 License:	LGPLv2+
 Group:		System/Libraries
 URL:		http://www.http://www.multiprecision.org/%{realname}
@@ -63,6 +63,7 @@ autoreconf
 %make
 
 %install
+%{__rm} -rf %{buildroot}
 %makeinstall_std
 mkdir -p %{buildroot}%{_docdir}/%{name}
 install -m 0644 AUTHORS NEWS README TODO %{buildroot}%{_docdir}/%{name}
@@ -73,13 +74,13 @@ make check
 %clean
 %{__rm} -rf %{buildroot}
 
-%files		-n %{libname}
+%files -n %{libname}
 %defattr(-,root,root)
 %doc %dir %{_docdir}/%{name}
 %doc %{_docdir}/%{name}/*
 %{_libdir}/libmpc.so.%{libmajor}*
 
-%files		-n %{libname_devel}
+%files -n %{libname_devel}
 %defattr(-,root,root)
 %{_includedir}/mpc.h
 %{_infodir}/mpc.info*
