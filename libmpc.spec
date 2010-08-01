@@ -5,11 +5,11 @@
 
 Summary:	Arithmetic of complex numbers with arbitrarily high precision and correct rounding
 Name:		libmpc
-Version:	0.8.1
-Release:	%mkrel 3
+Version:	0.8.2
+Release:	%mkrel 1
 License:	LGPLv2+
 Group:		System/Libraries
-URL:		http://www.http://www.multiprecision.org/%{realname}
+URL:		http://www.multiprecision.org/%{realname}
 Source0:	http://www.multiprecision.org/mpc/download/%{realname}-%{version}.tar.gz
 BuildRequires:	libgmp-devel
 BuildRequires:	libmpfr-devel
