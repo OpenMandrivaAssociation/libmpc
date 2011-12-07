@@ -89,5 +89,4 @@ make check
 %defattr(-,root,root)
 %{_includedir}/mpc.h
 %{_infodir}/mpc.info*
-%{_libdir}/libmpc.la 
 %{_libdir}/libmpc.so
