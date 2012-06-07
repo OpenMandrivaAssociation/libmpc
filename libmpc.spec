@@ -11,7 +11,7 @@ License:	LGPLv2+
 Group:		System/Libraries
 URL:		http://www.multiprecision.org/%{realname}
 Source0:	http://www.multiprecision.org/mpc/download/%{realname}-%{version}.tar.gz
-Patch0:		mpc-0.9-autoreconf.patch
+Patch0:		mpc-0.9-automake1.12.patch
 BuildRequires:	gmp-devel
 BuildRequires:	mpfr-devel
 
