@@ -1,17 +1,16 @@
 %define realname	mpc
-%define libmajor	2
+%define libmajor	3
 %define libname		%mklibname %{realname} %{libmajor}
 %define libname_devel	%mklibname %{realname} -d
 
 Summary:	Complex numbers arithmetic with arbitrarily high precision and correct rounding
 Name:		libmpc
-Version:	0.9
-Release:	4
+Version:	1.0
+Release:	1
 License:	LGPLv2+
 Group:		System/Libraries
 URL:		http://www.multiprecision.org/%{realname}
 Source0:	http://www.multiprecision.org/mpc/download/%{realname}-%{version}.tar.gz
-Patch0:		mpc-0.9-automake1.12.patch
 BuildRequires:	gmp-devel
 BuildRequires:	mpfr-devel
 
@@ -50,7 +49,6 @@ Development headers and libraries for MPC.
 
 %prep
 %setup -q -n %{realname}-%{version}
-%patch0 -p1
 autoreconf -ifs
 
 %build
