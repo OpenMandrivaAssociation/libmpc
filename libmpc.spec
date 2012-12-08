@@ -5,7 +5,7 @@
 
 Summary:	Complex numbers arithmetic with arbitrarily high precision and correct rounding
 Name:		libmpc
-Version:	1.0.1
+Version:	1.0
 Release:	2
 License:	LGPLv2+
 Group:		System/Libraries
@@ -61,6 +61,8 @@ autoreconf -ifs
 %install
 %__rm -rf %{buildroot}
 %makeinstall_std
+mkdir -p %{buildroot}%{_docdir}/%{name}
+install -m 0644 AUTHORS NEWS README TODO %{buildroot}%{_docdir}/%{name}
 
 %check
 make check
@@ -69,7 +71,8 @@ make check
 %{_libdir}/libmpc.so.%{libmajor}*
 
 %files -n %{libname_devel}
-%doc AUTHORS NEWS README TODO
+%doc %dir %{_docdir}/%{name}
+%doc %{_docdir}/%{name}/*
 %{_includedir}/mpc.h
 %{_infodir}/mpc.info*
 %{_libdir}/libmpc.so
