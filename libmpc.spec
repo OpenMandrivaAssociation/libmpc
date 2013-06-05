@@ -1,7 +1,7 @@
-%define oname mpc
-%define major 3
-%define libname %mklibname %{oname} %{major}
-%define devname %mklibname %{oname} -d
+%define oname	mpc
+%define major	3
+%define libname	%mklibname %{oname} %{major}
+%define devname	%mklibname %{oname} -d
 
 Summary:	Complex numbers arithmetic with arbitrarily high precision and correct rounding
 Name:		libmpc
@@ -9,7 +9,7 @@ Version:	1.0.1
 Release:	4
 License:	LGPLv2+
 Group:		System/Libraries
-URL:		http://www.multiprecision.org/%{oname}
+Url:		http://www.multiprecision.org/%{oname}
 Source0:	http://www.multiprecision.org/mpc/download/%{oname}-%{version}.tar.gz
 BuildRequires:	gmp-devel
 BuildRequires:	mpfr-devel
@@ -27,7 +27,6 @@ IDDN FR 001 060029 000 R P 2003 000 10000.
 %package -n	%{libname}
 Summary:	Complex numbers arithmetic with arbitrarily high precision and correct rounding
 Group:		System/Libraries
-Obsoletes:	%{mklibname mpc 2} <= 0.9
 
 %description -n	%{libname}
 Mpc is a C library for the arithmetic of complex numbers with arbitrarily
@@ -49,12 +48,12 @@ Provides:	%{name}-devel = %{version}-%{release}
 Development headers and libraries for MPC.
 
 %prep
-%setup -q -n %{oname}-%{version}
+%setup -qn %{oname}-%{version}
 autoreconf -ifs
 
 %build
-%configure2_5x			\
-	--enable-shared		\
+%configure2_5x \
+	--enable-shared \
 	--disable-static
 
 %make
@@ -73,3 +72,4 @@ make check
 %{_includedir}/mpc.h
 %{_infodir}/mpc.info*
 %{_libdir}/libmpc.so
+
