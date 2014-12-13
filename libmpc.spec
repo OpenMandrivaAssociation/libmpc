@@ -16,7 +16,7 @@ Source0:	http://www.multiprecision.org/mpc/download/%{oname}-%{version}.tar.gz
 BuildRequires:	gmp-devel
 BuildRequires:	mpfr-devel
 %if %{with uclibc}
-BuildRequires:	uclibc-%{_lib}mpc3
+BuildRequires:	uclibc-%{_lib}gmp10
 BuildRequires:	uClibc-devel
 %endif
 
