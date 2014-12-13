@@ -17,6 +17,7 @@ BuildRequires:	gmp-devel
 BuildRequires:	mpfr-devel
 %if %{with uclibc}
 BuildRequires:	uclibc-%{_lib}gmp10
+BuildRequires:	uclibc-%{_lib}mpfr4
 BuildRequires:	uClibc-devel
 %endif
 
