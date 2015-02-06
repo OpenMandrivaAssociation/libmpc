@@ -16,8 +16,6 @@ Source0:	http://www.multiprecision.org/mpc/download/%{oname}-%{version}.tar.gz
 BuildRequires:	gmp-devel
 BuildRequires:	mpfr-devel
 %if %{with uclibc}
-BuildRequires:	uclibc-%{_lib}gmp10
-BuildRequires:	uclibc-%{_lib}mpfr4
 BuildRequires:	uClibc-devel
 %endif
 
@@ -62,8 +60,11 @@ IDDN FR 001 060029 000 R P 2003 000 10000.
 %package -n	%{devname}
 Summary:	Development headers and libraries for MPC
 Group:		Development/C
-Requires:	%{libname} = %{version}-%{release}
-Provides:	%{name}-devel = %{version}-%{release}
+Requires:	%{libname} = %{EVRD}
+%if %{with uclibc}
+Requires:	uclibc-%{libname} = %{EVRD}
+%endif
+Provides:	%{name}-devel = %{EVRD}
 
 %description -n	%{devname}
 Development headers and libraries for MPC.
