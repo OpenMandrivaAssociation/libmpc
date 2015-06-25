@@ -8,7 +8,7 @@
 Summary:	Complex numbers arithmetic with arbitrarily high precision and correct rounding
 Name:		libmpc
 Version:	1.0.2
-Release:	6
+Release:	7
 License:	LGPLv2+
 Group:		System/Libraries
 Url:		http://www.multiprecision.org/%{oname}
@@ -17,6 +17,8 @@ BuildRequires:	gmp-devel
 BuildRequires:	mpfr-devel
 %if %{with uclibc}
 BuildRequires:	uClibc-devel
+BuildRequires:	uclibc-gmp-devel
+BuildRequires:	uclibc-mpfr-devel
 %endif
 
 %description
@@ -43,6 +45,7 @@ any later version. The Mpc library has been registered in France by the
 Agence pour la Protection des Programmes on 2003-02-05 under the number
 IDDN FR 001 060029 000 R P 2003 000 10000.
 
+%if %{with uclibc}
 %package -n	uclibc-%{libname}
 Summary:	uClibc build of libmpc
 Group:		System/Libraries
@@ -57,13 +60,22 @@ any later version. The Mpc library has been registered in France by the
 Agence pour la Protection des Programmes on 2003-02-05 under the number
 IDDN FR 001 060029 000 R P 2003 000 10000.
 
+%package -n	uclibc-%{devname}
+Summary:	Development headers and libraries for MPC
+Group:		Development/C
+Requires:	%{devname} = %{EVRD}
+Requires:	uclibc-%{libname} = %{EVRD}
+Provides:	uclibc-%{name}-devel = %{EVRD}
+Conflicts:	%{devname} < 1.0.2-7
+
+%description -n	uclibc-%{devname}
+Development headers and libraries for MPC.
+%endif
+
 %package -n	%{devname}
 Summary:	Development headers and libraries for MPC
 Group:		Development/C
 Requires:	%{libname} = %{EVRD}
-%if %{with uclibc}
-Requires:	uclibc-%{libname} = %{EVRD}
-%endif
 Provides:	%{name}-devel = %{EVRD}
 
 %description -n	%{devname}
@@ -105,6 +117,9 @@ make -C glibc check
 %if %{with uclibc}
 %files -n uclibc-%{libname}
 %{uclibc_root}%{_libdir}/libmpc.so.%{major}*
+
+%files -n uclibc-%{devname}
+%{uclibc_root}%{_libdir}/libmpc.so
 %endif
 
 %files -n %{devname}
@@ -112,6 +127,3 @@ make -C glibc check
 %{_includedir}/mpc.h
 %{_infodir}/mpc.info*
 %{_libdir}/libmpc.so
-%if %{with uclibc}
-%{uclibc_root}%{_libdir}/libmpc.so
-%endif
