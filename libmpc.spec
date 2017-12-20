@@ -3,7 +3,7 @@
 %define libname %mklibname %{oname} %{major}
 %define devname %mklibname %{oname} -d
 
-%define optflags %{optflags} -Ofast
+%global optflags %{optflags} -Ofast
 
 Summary:	Complex numbers arithmetic with arbitrarily high precision and correct rounding
 Name:		libmpc
@@ -15,6 +15,7 @@ Url:		http://www.multiprecision.org/%{oname}
 Source0:	http://www.multiprecision.org/mpc/download/%{oname}-%{version}.tar.gz
 BuildRequires:	gmp-devel
 BuildRequires:	mpfr-devel
+
 %description
 Mpc is a C library for the arithmetic of complex numbers with arbitrarily
 high precision and correct rounding of the result. It is built upon and
