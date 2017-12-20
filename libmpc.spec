@@ -3,7 +3,7 @@
 %define libname %mklibname %{oname} %{major}
 %define devname %mklibname %{oname} -d
 
-%define optlfags %{optflags} -Ofast
+%define optflags %{optflags} -Ofast
 
 Summary:	Complex numbers arithmetic with arbitrarily high precision and correct rounding
 Name:		libmpc
