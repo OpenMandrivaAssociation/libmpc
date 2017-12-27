@@ -15,6 +15,7 @@ Url:		http://www.multiprecision.org/%{oname}
 Source0:	http://www.multiprecision.org/mpc/download/%{oname}-%{version}.tar.gz
 BuildRequires:	gmp-devel
 BuildRequires:	mpfr-devel
+BuildRequires:	texinfo
 
 %description
 Mpc is a C library for the arithmetic of complex numbers with arbitrarily
