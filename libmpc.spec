@@ -7,13 +7,12 @@
 
 Summary:	Complex numbers arithmetic with arbitrarily high precision and correct rounding
 Name:		libmpc
-Version:	1.0.3
-Release:	4
+Version:	1.1.0
+Release:	1
 License:	LGPLv2+
 Group:		System/Libraries
 Url:		http://www.multiprecision.org/%{oname}
 Source0:	http://www.multiprecision.org/mpc/download/%{oname}-%{version}.tar.gz
-Patch0:		mpc-1.0.3-mpfr-4.0.patch
 BuildRequires:	gmp-devel
 BuildRequires:	mpfr-devel
 
@@ -54,6 +53,12 @@ Development headers and libraries for MPC.
 %setup -qn %{oname}-%{version}
 %apply_patches
 
+libtoolize
+aclocal -I m4
+autoheader
+automake -a
+autoconf
+
 %build
 %configure \
 	--enable-shared
@@ -63,8 +68,7 @@ Development headers and libraries for MPC.
 %makeinstall_std
 
 %check
-# FIXME currently a few tests fail because of mpfr 4.0
-make check || :
+%make check
 
 %files -n %{libname}
 %{_libdir}/libmpc.so.%{major}*
