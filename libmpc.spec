@@ -3,12 +3,12 @@
 %define libname %mklibname %{oname} %{major}
 %define devname %mklibname %{oname} -d
 
-%global optflags %{optflags} -Ofast
+%global optflags %{optflags} -O3
 
 Summary:	Complex numbers arithmetic with arbitrarily high precision and correct rounding
 Name:		libmpc
 Version:	1.1.0
-Release:	3
+Release:	4
 License:	LGPLv2+
 Group:		System/Libraries
 Url:		http://www.multiprecision.org/%{oname}
@@ -51,8 +51,7 @@ Provides:	%{name}-devel = %{EVRD}
 Development headers and libraries for MPC.
 
 %prep
-%setup -qn %{oname}-%{version}
-%apply_patches
+%autosetup -n %{oname}-%{version} -p1
 
 libtoolize
 aclocal -I m4
@@ -63,13 +62,13 @@ autoconf
 %build
 %configure \
 	--enable-shared
-%make
+%make_build
 
 %install
-%makeinstall_std
+%make_install
 
 %check
-%make check
+make check
 
 %files -n %{libname}
 %{_libdir}/libmpc.so.%{major}*
