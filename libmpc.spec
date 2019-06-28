@@ -76,8 +76,9 @@ LDFLAGS="%{ldflags} -fprofile-instr-generate" \
 
 %make_build
 make check
-./tools/bench/mpcbench
-
+cd tools/bench
+make bench
+cd -
 unset LD_LIBRARY_PATH
 unset LLVM_PROFILE_FILE
 llvm-profdata merge --output=%{name}.profile *.profile.d
