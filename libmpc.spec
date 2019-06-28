@@ -11,7 +11,7 @@
 Summary:	Complex numbers arithmetic with arbitrarily high precision and correct rounding
 Name:		libmpc
 Version:	1.1.0
-Release:	5
+Release:	6
 License:	LGPLv2+
 Group:		System/Libraries
 Url:		http://www.multiprecision.org/%{oname}
@@ -76,6 +76,8 @@ LDFLAGS="%{ldflags} -fprofile-instr-generate" \
 
 %make_build
 make check
+./mpcbench
+
 unset LD_LIBRARY_PATH
 unset LLVM_PROFILE_FILE
 llvm-profdata merge --output=%{name}.profile *.profile.d
