@@ -101,8 +101,10 @@ LDFLAGS="%{ldflags} -fprofile-instr-use=$(realpath %{name}.profile)" \
 %install
 %make_install
 
+%ifnarch aarch64
 %check
 make check
+%endif
 
 %files -n %{libname}
 %{_libdir}/libmpc.so.%{major}*
