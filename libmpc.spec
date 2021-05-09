@@ -14,12 +14,12 @@
 
 Summary:	Complex numbers arithmetic with arbitrarily high precision and correct rounding
 Name:		libmpc
-Version:	1.2.0
+Version:	1.2.1
 Release:	1
 License:	LGPLv2+
 Group:		System/Libraries
 Url:		http://www.multiprecision.org/%{oname}
-Source0:	http://www.multiprecision.org/mpc/download/%{oname}-%{version}.tar.gz
+Source0:	https://ftp.gnu.org/gnu/mpc/mpc-%{version}.tar.gz
 BuildRequires:	gmp-devel
 BuildRequires:	mpfr-devel
 BuildRequires:	texinfo
