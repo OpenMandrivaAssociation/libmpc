@@ -6,16 +6,12 @@
 %global optflags %{optflags} -O3
 
 # (tpg) enable PGO build
-%ifnarch aarch64
 %bcond_without pgo
-%else
-%bcond_with pgo
-%endif
 
 Summary:	Complex numbers arithmetic with arbitrarily high precision and correct rounding
 Name:		libmpc
 Version:	1.2.1
-Release:	1
+Release:	2
 License:	LGPLv2+
 Group:		System/Libraries
 Url:		http://www.multiprecision.org/%{oname}
@@ -68,13 +64,11 @@ autoconf
 
 %build
 %if %{with pgo}
-export LLVM_PROFILE_FILE=%{name}-%p.profile.d
 export LD_LIBRARY_PATH="$(pwd)"
-CFLAGS="%{optflags} -fprofile-instr-generate" \
-CXXFLAGS="%{optflags} -fprofile-instr-generate" \
-FFLAGS="$CFLAGS_PGO" \
-FCFLAGS="$CFLAGS_PGO" \
-LDFLAGS="%{ldflags} -fprofile-instr-generate" \
+
+CFLAGS="%{optflags} -fprofile-generate" \
+CXXFLAGS="%{optflags} -fprofile-generate" \
+LDFLAGS="%{build_ldflags} -fprofile-generate" \
 %configure \
 	--enable-shared
 
@@ -84,14 +78,14 @@ cd tools/bench
 make bench
 cd -
 unset LD_LIBRARY_PATH
-unset LLVM_PROFILE_FILE
-llvm-profdata merge --output=%{name}.profile *.profile.d
-
+llvm-profdata merge --output=%{name}-llvm.profdata *.profraw
+PROFDATA="$(realpath %{name}-llvm.profdata)"
+rm -f *.profraw
 make clean
 
-CFLAGS="%{optflags} -fprofile-instr-use=$(realpath %{name}.profile)" \
-CXXFLAGS="%{optflags} -fprofile-instr-use=$(realpath %{name}.profile)" \
-LDFLAGS="%{ldflags} -fprofile-instr-use=$(realpath %{name}.profile)" \
+CFLAGS="%{optflags} -fprofile-use=$PROFDATA" \
+CXXFLAGS="%{optflags} -fprofile-use=$PROFDATA" \
+LDFLAGS="%{ldflags} -fprofile-use=$PROFDATA" \
 %endif
 %configure \
 	--enable-shared
@@ -112,5 +106,5 @@ make check
 %files -n %{devname}
 %doc AUTHORS NEWS README TODO
 %{_includedir}/mpc.h
-%{_infodir}/mpc.info*
+%doc %{_infodir}/mpc.info*
 %{_libdir}/libmpc.so
