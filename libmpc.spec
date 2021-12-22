@@ -11,7 +11,7 @@
 Summary:	Complex numbers arithmetic with arbitrarily high precision and correct rounding
 Name:		libmpc
 Version:	1.2.1
-Release:	2
+Release:	3
 License:	LGPLv2+
 Group:		System/Libraries
 Url:		http://www.multiprecision.org/%{oname}
@@ -66,7 +66,7 @@ autoconf
 %if %{with pgo}
 export LD_LIBRARY_PATH="$(pwd)"
 
-CFLAGS="%{optflags} -fprofile-generate" \
+CFLAGS="%{optflags} -fprofile-generate -mllvm -vp-counters-per-site=32" \
 CXXFLAGS="%{optflags} -fprofile-generate" \
 LDFLAGS="%{build_ldflags} -fprofile-generate" \
 %configure \
@@ -78,14 +78,14 @@ cd tools/bench
 make bench
 cd -
 unset LD_LIBRARY_PATH
-llvm-profdata merge --output=%{name}-llvm.profdata *.profraw
+llvm-profdata merge --output=%{name}-llvm.profdata $(find . -name "*.profraw" -type f)
 PROFDATA="$(realpath %{name}-llvm.profdata)"
 rm -f *.profraw
 make clean
 
 CFLAGS="%{optflags} -fprofile-use=$PROFDATA" \
 CXXFLAGS="%{optflags} -fprofile-use=$PROFDATA" \
-LDFLAGS="%{ldflags} -fprofile-use=$PROFDATA" \
+LDFLAGS="%{build_ldflags} -fprofile-use=$PROFDATA" \
 %endif
 %configure \
 	--enable-shared
