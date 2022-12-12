@@ -1,0 +1,11 @@
+diff -up mpc-1.3.0/tools/bench/mpcbench.c.omv~ mpc-1.3.0/tools/bench/mpcbench.c
+--- mpc-1.3.0/tools/bench/mpcbench.c.omv~	2022-12-12 20:49:26.239046428 +0100
++++ mpc-1.3.0/tools/bench/mpcbench.c	2022-12-12 20:50:05.196334375 +0100
+@@ -21,6 +21,7 @@ along with this program. If not, see htt
+ #include "config.h"
+ #include <stdlib.h>
+ #include <stdio.h>
++#include <sys/resource.h>
+ #include <math.h>
+ #ifdef HAVE_SYS_TIME_H
+ #include <sys/time.h>
