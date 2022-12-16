@@ -10,15 +10,15 @@
 
 Summary:	Complex numbers arithmetic with arbitrarily high precision and correct rounding
 Name:		libmpc
-Version:	1.3.0
+Version:	1.3.1
 Release:	1
 License:	LGPLv2+
 Group:		System/Libraries
 Url:		http://www.multiprecision.org/%{oname}
 Source0:	https://ftp.gnu.org/gnu/mpc/mpc-%{version}.tar.gz
 Patch0:		mpc-1.3.0-bench-compile.patch
-BuildRequires:	gmp-devel
-BuildRequires:	mpfr-devel
+BuildRequires:	pkgconfig(gmp)
+BuildRequires:	pkgconfig(mpfr)
 BuildRequires:	texinfo
 
 %description
