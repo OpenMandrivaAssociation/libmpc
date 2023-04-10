@@ -6,7 +6,9 @@
 %global optflags %{optflags} -O3
 
 # (tpg) enable PGO build
+%if ! %{cross_compiling}
 %bcond_without pgo
+%endif
 
 Summary:	Complex numbers arithmetic with arbitrarily high precision and correct rounding
 Name:		libmpc
@@ -96,9 +98,11 @@ LDFLAGS="%{build_ldflags} -fprofile-use=$PROFDATA" \
 %install
 %make_install
 
+%if ! %{cross_compiling}
 %ifnarch aarch64
 %check
 make check
+%endif
 %endif
 
 %files -n %{libname}
