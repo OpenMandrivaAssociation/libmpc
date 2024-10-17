@@ -16,7 +16,7 @@ Version:	1.3.1
 Release:	2
 License:	LGPLv2+
 Group:		System/Libraries
-Url:		http://www.multiprecision.org/%{oname}
+Url:		https://www.multiprecision.org/%{oname}
 Source0:	https://ftp.gnu.org/gnu/mpc/mpc-%{version}.tar.gz
 Patch0:		mpc-1.3.0-bench-compile.patch
 BuildRequires:	pkgconfig(gmp)
