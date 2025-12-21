@@ -19,6 +19,11 @@ Group:		System/Libraries
 Url:		https://www.multiprecision.org/%{oname}
 Source0:	https://ftp.gnu.org/gnu/mpc/mpc-%{version}.tar.gz
 Patch0:		mpc-1.3.0-bench-compile.patch
+BuildRequires:	autoconf
+BuildRequires:	automake
+BuildRequires:	libtool-base
+BuildRequires:	slibtool
+BuildRequires:	make
 BuildRequires:	pkgconfig(gmp)
 BuildRequires:	pkgconfig(mpfr)
 BuildRequires:	texinfo
