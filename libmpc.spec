@@ -13,7 +13,7 @@
 Summary:	Complex numbers arithmetic with arbitrarily high precision and correct rounding
 Name:		libmpc
 Version:	1.3.1
-Release:	2
+Release:	3
 License:	LGPLv2+
 Group:		System/Libraries
 Url:		https://www.multiprecision.org/%{oname}
@@ -21,7 +21,6 @@ Source0:	https://ftp.gnu.org/gnu/mpc/mpc-%{version}.tar.gz
 Patch0:		mpc-1.3.0-bench-compile.patch
 BuildRequires:	autoconf
 BuildRequires:	automake
-BuildRequires:	libtool-base
 BuildRequires:	slibtool
 BuildRequires:	make
 BuildRequires:	pkgconfig(gmp)
@@ -64,7 +63,7 @@ Development headers and libraries for MPC.
 %prep
 %autosetup -n %{oname}-%{version} -p1
 
-libtoolize
+slibtoolize
 aclocal -I m4
 autoheader
 automake -a
