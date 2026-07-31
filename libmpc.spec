@@ -12,7 +12,7 @@
 
 Summary:	Complex numbers arithmetic with arbitrarily high precision and correct rounding
 Name:		libmpc
-Version:	1.4.0
+Version:	1.4.1
 Release:	1
 License:	LGPLv2+
 Group:		System/Libraries
@@ -61,7 +61,7 @@ Provides:	%{name}-devel = %{EVRD}
 Development headers and libraries for MPC.
 
 %prep
-%autosetup -n %{oname}-%{version} -p1
+%autosetup -n mpc-1.4.1 -p1
 
 slibtoolize
 aclocal -I m4
